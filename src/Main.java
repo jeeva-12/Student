@@ -65,6 +65,20 @@ class Student {
             }
             System.out.println("No student found!!!");
         }
+        static void deleteStudent()
+        {
+            System.out.print("Enter student admission number:");
+            long code = sc.nextLong();
+            for(int i = 0; i < studentList.size(); i++)
+            {
+                if(studentList.get(i).admissionNumber == code)
+                {
+                    studentList.remove(i);
+                    System.out.println("Student removed successfully");
+                    break;
+                }
+            }
+        }
 
 
 
