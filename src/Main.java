@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +17,8 @@ class Student {
     }
 }
 
-    public class Main {
+    public class Main
+    {
         static Scanner sc = new Scanner(System.in);
         static ArrayList<Student> studentList = new ArrayList<Student>();
 
@@ -30,19 +33,19 @@ class Student {
             String college = sc.next();
             Student st = new Student(name, admissionNumber, rollNumber, college);
             studentList.add(st);
-            System.out.println("Student Added Successfully");
 
+            System.out.println("Student Added Successfully");
         }
 
         static void viewStudent() {
 
             for (int i = 0; i < studentList.size(); i++) {
-                System.out.println("------------------------------------------");
+
                 System.out.println("Student name " + studentList.get(i).name);
                 System.out.println("Student admission number " + studentList.get(i).admissionNumber);
                 System.out.println("Student roll number " + studentList.get(i).rollNumber);
                 System.out.println("Employee college " + studentList.get(i).college);
-                System.out.println("------------------------------------------");
+
             }
         }
 
@@ -51,16 +54,19 @@ class Student {
             long code = sc.nextLong();
             for (int i = 0; i < studentList.size(); i++) {
                 if (studentList.get(i).admissionNumber == code) {
-                    System.out.println("------------------------------------------");
+
                     System.out.println("Employee code " + studentList.get(i).name);
                     System.out.println("Employee name " + studentList.get(i).admissionNumber);
                     System.out.println("Employee designation " + studentList.get(i).rollNumber);
                     System.out.println("Employee salary " + studentList.get(i).college);
-                    System.out.println("------------------------------------------");
+
                     break;
                 }
+                else{
+                    System.out.println("No student found!!!");
+                }
             }
-            System.out.println("No student found!!!");
+
         }
 
         static void deleteStudent() {
@@ -77,20 +83,26 @@ class Student {
 
 
         public static void main(String[] args) {
+            ArrayList<String> jsonArry=new ArrayList<>();
             while (true) {
-                System.out.println("------------------ Menu ----------------------");
+                System.out.println(" Menu ");
                 System.out.println("1. Add Student");
                 System.out.println("2. View Students");
                 System.out.println("3. Search Student");
                 System.out.println("4. Delete Student");
-                System.out.println("5. Exit");
-                System.out.println("----------------------------------------------");
+                System.out.println("5. JASON");
+
+                System.out.println("6. Exit");
+
+
+
                 System.out.print("\nPlease enter the choice: ");
                 int choice = sc.nextInt();
 
                 switch (choice) {
                     case 1:
                         addStudent();
+                        jsonArry.add(new Gson().toJson(studentList));
                         break;
                     case 2:
                         viewStudent();
@@ -102,6 +114,9 @@ class Student {
                         deleteStudent();
                         break;
                     case 5:
+                        System.out.println(jsonArry);
+                        break;
+                    case 6:
                         System.exit(0);
                         break;
                     default:
